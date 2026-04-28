@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Umme Khadija — CV</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: #fdf6fb;
+      min-height: 100vh;
+      padding: 2rem 1rem;
+      color: #4a148c;
+    }
+
+    .cv-wrap {
+      max-width: 860px;
+      margin: 0 auto;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      background: linear-gradient(135deg, #fce4ec 0%, #f3e5f5 40%, #e8eaf6 100%);
+      border-radius: 24px;
+      padding: 2.5rem 2.5rem 2rem;
+      margin-bottom: 1.5rem;
+      position: relative;
+      overflow: hidden;
+      border: 1px solid #f8bbd0;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -40px; right: -40px;
+      width: 180px; height: 180px;
+      background: radial-gradient(circle, #f48fb1 0%, transparent 70%);
+      opacity: 0.25;
+      border-radius: 50%;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: -30px; left: -30px;
+      width: 140px; height: 140px;
+      background: radial-gradient(circle, #ce93d8 0%, transparent 70%);
+      opacity: 0.2;
+      border-radius: 50%;
+    }
+
+    .avatar-ring {
+      width: 80px; height: 80px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #f48fb1, #ce93d8, #9fa8da);
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 1rem;
+      box-shadow: 0 4px 20px rgba(206,147,216,0.4);
+      font-family: 'Playfair Display', serif;
+      font-size: 28px;
+      font-weight: 700;
+      color: white;
+      letter-spacing: -1px;
+    }
+
+    .hero-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.4rem;
+      font-weight: 700;
+      color: #4a148c;
+      line-height: 1.1;
+      margin-bottom: 4px;
+    }
+
+    .hero-title {
+      font-size: 0.95rem;
+      color: #880e4f;
+      font-weight: 500;
+      margin-bottom: 1rem;
+      letter-spacing: 0.02em;
+    }
+
+    .hero-contacts {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .contact-pill {
+      background: white;
+      border: 1px solid #f8bbd0;
+      border-radius: 999px;
+      padding: 5px 14px;
+      font-size: 0.8rem;
+      color: #6a1b9a;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      text-decoration: none;
+      box-shadow: 0 1px 6px rgba(244,143,177,0.15);
+      transition: box-shadow 0.2s;
+    }
+
+    .contact-pill:hover {
+      box-shadow: 0 3px 14px rgba(244,143,177,0.35);
+    }
+
+    .contact-pill .dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: #f48fb1;
+      flex-shrink: 0;
+    }
+
+    /* ── GRID ── */
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.25rem;
+      margin-bottom: 1.25rem;
+    }
+
+    @media (max-width: 600px) {
+      .grid-2 { grid-template-columns: 1fr; }
+      .project-grid { grid-template-columns: 1fr !important; }
+      .hero-name { font-size: 1.8rem; }
+    }
+
+    /* ── CARDS ── */
+    .section-card {
+      background: white;
+      border-radius: 18px;
+      padding: 1.4rem 1.5rem;
+      border: 1px solid #f3e5f5;
+      box-shadow: 0 2px 16px rgba(206,147,216,0.08);
+    }
+
+    .section-card.full {
+      grid-column: 1 / -1;
+    }
+
+    /* ── SECTION LABEL ── */
+    .section-label {
+      font-size: 0.68rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #e91e8c;
+      margin-bottom: 0.9rem;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+    }
+
+    .section-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(to right, #f8bbd0, transparent);
+    }
+
+    /* ── SUMMARY ── */
+    .summary-text {
+      font-size: 0.9rem;
+      line-height: 1.8;
+      color: #4a148c;
+      font-weight: 300;
+    }
+
+    /* ── SKILLS ── */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+
+    .skill-tag {
+      background: linear-gradient(135deg, #fce4ec, #f3e5f5);
+      border: 1px solid #f8bbd0;
+      border-radius: 10px;
+      padding: 7px 11px;
+      font-size: 0.78rem;
+      color: #6a1b9a;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .skill-dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #f48fb1, #ce93d8);
+      flex-shrink: 0;
+    }
+
+    .soft-tag {
+      background: linear-gradient(135deg, #e8eaf6, #f3e5f5);
+      border: 1px solid #c5cae9;
+    }
+
+    .soft-tag .skill-dot {
+      background: linear-gradient(135deg, #9fa8da, #ce93d8);
+    }
+
+    /* ── PROJECTS ── */
+    .project-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .project-item {
+      padding: 1rem 1.1rem;
+      border-radius: 12px;
+      border: 1px solid #fce4ec;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .project-item:hover {
+      border-color: #f48fb1;
+      box-shadow: 0 3px 14px rgba(244,143,177,0.15);
+    }
+
+    .project-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: #4a148c;
+      margin-bottom: 2px;
+    }
+
+    .project-tech {
+      font-size: 0.72rem;
+      color: #e91e8c;
+      font-weight: 500;
+      margin-bottom: 6px;
+      font-style: italic;
+    }
+
+    .project-bullets {
+      list-style: none;
+    }
+
+    .project-bullets li {
+      font-size: 0.8rem;
+      color: #6a1b9a;
+      line-height: 1.55;
+      padding-left: 12px;
+      position: relative;
+      font-weight: 300;
+    }
+
+    .project-bullets li::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 8px;
+      width: 5px; height: 5px;
+      border-radius: 50%;
+      background: #f48fb1;
+    }
+
+    /* ── EDUCATION ── */
+    .edu-block {
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+    }
+
+    .edu-icon {
+      width: 44px; height: 44px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, #f48fb1, #ce93d8);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      box-shadow: 0 3px 12px rgba(206,147,216,0.35);
+      font-size: 22px;
+    }
+
+    .edu-info .school {
+      font-family: 'Playfair Display', serif;
+      font-size: 1rem;
+      font-weight: 600;
+      color: #4a148c;
+    }
+
+    .edu-info .degree {
+      font-size: 0.8rem;
+      color: #880e4f;
+      font-weight: 500;
+      margin: 2px 0;
+    }
+
+    .edu-info .detail {
+      font-size: 0.78rem;
+      color: #9c27b0;
+      font-weight: 300;
+    }
+
+    /* ── ACHIEVEMENTS ── */
+    .achievement-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 8px 0;
+      border-bottom: 1px solid #fce4ec;
+    }
+
+    .achievement-item:last-child { border-bottom: none; }
+
+    .ach-star {
+      width: 22px; height: 22px;
+      border-radius: 6px;
+      background: linear-gradient(135deg, #f48fb1, #ce93d8);
+      flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 11px;
+      color: white;
+      margin-top: 1px;
+    }
+
+    .ach-text {
+      font-size: 0.82rem;
+      color: #4a148c;
+      line-height: 1.6;
+      font-weight: 400;
+    }
+
+    /* ── FOOTER ── */
+    .footer-bar {
+      background: linear-gradient(135deg, #f3e5f5, #fce4ec);
+      border-radius: 14px;
+      padding: 0.9rem 1.5rem;
+      text-align: center;
+      font-size: 0.75rem;
+      color: #880e4f;
+      font-weight: 500;
+      border: 1px solid #f8bbd0;
+      letter-spacing: 0.05em;
+      margin-top: 1.25rem;
+    }
+  </style>
+</head>
+<body>
+
+<div class="cv-wrap">
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="avatar-ring">UK</div>
+    <div class="hero-name">Umme Khadija</div>
+    <div class="hero-title">Computer Science Student &middot; Fatima Jinnah Women University</div>
+    <div class="hero-contacts">
+      <span class="contact-pill"><span class="dot"></span>Rawalpindi, Pakistan</span>
+      <a href="mailto:ummekhadija801@gmail.com" class="contact-pill"><span class="dot"></span>ummekhadija801@gmail.com</a>
+      <span class="contact-pill"><span class="dot"></span>4th Semester &middot; 2024–Present</span>
+    </div>
+  </div>
+
+  <!-- SUMMARY -->
+  <div class="grid-2">
+    <div class="section-card full">
+      <div class="section-label">About Me</div>
+      <p class="summary-text">
+        4th-semester CS student at FJWU with a strong passion for software development and system architecture.
+        Experienced in building diverse projects — from low-level Assembly programming to high-level Java applications.
+        Seeking to leverage my skills in OOP, Python, and Database Systems to create meaningful tech solutions.
+      </p>
+    </div>
+  </div>
+
+  <!-- SKILLS + EDUCATION -->
+  <div class="grid-2">
+    <div class="section-card">
+      <div class="section-label">Technical Skills</div>
+      <div class="skills-grid">
+        <div class="skill-tag"><span class="skill-dot"></span>C / C++ / Python</div>
+        <div class="skill-tag"><span class="skill-dot"></span>Java</div>
+        <div class="skill-tag"><span class="skill-dot"></span>Assembly (x86)</div>
+        <div class="skill-tag"><span class="skill-dot"></span>Interrupt Handling</div>
+        <div class="skill-tag"><span class="skill-dot"></span>Database Systems</div>
+        <div class="skill-tag"><span class="skill-dot"></span>GUI Development</div>
+        <div class="skill-tag"><span class="skill-dot"></span>Data Structures</div>
+        <div class="skill-tag"><span class="skill-dot"></span>OOP</div>
+        <div class="skill-tag"><span class="skill-dot"></span>Virtual Machines</div>
+        <div class="skill-tag"><span class="skill-dot"></span>FMTP Servers</div>
+      </div>
+    </div>
+
+    <div class="section-card">
+      <div class="section-label">Soft Skills</div>
+      <div class="skills-grid">
+        <div class="skill-tag soft-tag"><span class="skill-dot"></span>Problem Solving</div>
+        <div class="skill-tag soft-tag"><span class="skill-dot"></span>Teamwork</div>
+        <div class="skill-tag soft-tag"><span class="skill-dot"></span>Time Management</div>
+        <div class="skill-tag soft-tag"><span class="skill-dot"></span>Content Writing</div>
+        <div class="skill-tag soft-tag"><span class="skill-dot"></span>Creativity</div>
+        <div class="skill-tag soft-tag"><span class="skill-dot"></span>Communication</div>
+      </div>
+
+      <div class="section-label" style="margin-top: 1.2rem;">Education</div>
+      <div class="edu-block">
+        <div class="edu-icon">🎓</div>
+        <div class="edu-info">
+          <div class="school">Fatima Jinnah Women University</div>
+          <div class="degree">Bachelors in Computer Science</div>
+          <div class="detail">2024 – Present &middot; Focus: OOP, Assembly, DBS</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PROJECTS -->
+  <div class="grid-2">
+    <div class="section-card full">
+      <div class="section-label">Academic Projects</div>
+      <div class="project-grid">
+        <div class="project-item">
+          <div class="project-title">Stack-Based Text Editor</div>
+          <div class="project-tech">Java &middot; Data Structures</div>
+          <ul class="project-bullets">
+            <li>Custom text editor using Stack data structures</li>
+            <li>Efficient undo/redo functionality management</li>
+          </ul>
+        </div>
+        <div class="project-item">
+          <div class="project-title">Assembly System Projects</div>
+          <div class="project-tech">x86 Architecture</div>
+          <ul class="project-bullets">
+            <li>Interrupt Handling for hardware control</li>
+            <li>Low-level logic &amp; system optimization</li>
+          </ul>
+        </div>
+        <div class="project-item">
+          <div class="project-title">Database Management GUI</div>
+          <div class="project-tech">Python / SQL</div>
+          <ul class="project-bullets">
+            <li>User-friendly GUI for database interactions</li>
+            <li>Connected front-end with back-end DBS logic</li>
+          </ul>
+        </div>
+        <div class="project-item">
+          <div class="project-title">Tic-Tac-Toe Game</div>
+          <div class="project-tech">C++ / Python</div>
+          <ul class="project-bullets">
+            <li>Logic-based game with interactive interface</li>
+            <li>Algorithm optimization &amp; error handling</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ACHIEVEMENTS -->
+  <div class="grid-2">
+    <div class="section-card full">
+      <div class="section-label">Achievements</div>
+      <div class="achievement-item">
+        <div class="ach-star">&#9733;</div>
+        <div class="ach-text">Successfully configured <strong>FMTP Servers</strong> on Virtual Machines — hands-on achievement in network infrastructure.</div>
+      </div>
+      <div class="achievement-item">
+        <div class="ach-star">&#9733;</div>
+        <div class="ach-text">Completed <strong>3 semesters</strong> with multiple high-level programming projects across C, Java, Python, and Assembly.</div>
+      </div>
+      <div class="achievement-item">
+        <div class="ach-star">&#9733;</div>
+        <div class="ach-text">Built end-to-end applications from <strong>low-level Assembly</strong> to full <strong>GUI-integrated database systems</strong>.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer-bar">
+    Umme Khadija &nbsp;&middot;&nbsp; ummekhadija801@gmail.com &nbsp;&middot;&nbsp; Rawalpindi, Pakistan &nbsp;&middot;&nbsp; Open to opportunities
+  </div>
+
+</div>
+
+</body>
+</html>
